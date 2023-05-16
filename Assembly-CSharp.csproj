@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{b7a19d2f-b93b-6612-b57b-a31942a30a55}</ProjectGuid>
+    <ProjectGuid>{87040381-7a2b-71d7-d218-8c0a67eea35c}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -37,10 +37,12 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Platform.cs" />
+     <Compile Include="Assets\Scripts\PlaySound.cs" />
      <Compile Include="Assets\Scripts\Pickup.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\Scripts\Key.cs" />
+     <Compile Include="Assets\Scripts\MusicPlayer.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -59,13 +61,17 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
+     <Compile Include="Assets\Scripts\MoveTowardsTarget.cs" />
+     <Compile Include="Assets\Scripts\NPC.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
+     <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
+     <Compile Include="Assets\Scripts\LightColorChanger.cs" />
      <Compile Include="Assets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
      <Compile Include="Assets\InputSystem\StarterAssetsInputs.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
@@ -78,6 +84,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+     <Compile Include="Assets\Scripts\Vehicle.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
      <Compile Include="Assets\Scripts\BasicRigidBodyPush.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
@@ -90,11 +97,13 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
+     <None Include="Assets\PolygonSciFiCity\Shaders\Polygon_Triplanar.shader" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+     <None Include="Assets\PolygonSciFiCity\Shaders\Polygon_UVScroll.shader" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
@@ -358,25 +367,25 @@
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Mdb">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Pdb">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Rocks">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="ReportGeneratorMerged">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\PackageCache\com.unity.testtools.codecoverage@1.2.2\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\PackageCache\com.unity.testtools.codecoverage@1.2.2\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -745,169 +754,169 @@
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="PPv2URPConverters">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\ThirdPersonAdventure\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
+        <HintPath>C:\Users\uraib\Documents\GitHub\MazeEscaper\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj">
-      <Project>{ebbe7339-46ce-408b-602d-11106431bf09}</Project>
+      <Project>{c25ade15-9990-06be-1a62-9dd25fe5b0ae}</Project>
       <Name>Unity.VisualScripting.Flow.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
-      <Project>{5212247f-85da-ad59-03c9-ebe7241cbd1f}</Project>
+      <Project>{b71be1ae-01ff-a61d-f8fc-6f81c55c203d}</Project>
       <Name>Unity.VSCode.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
-      <Project>{68e2eedb-c979-6892-f089-ad083f17b2b3}</Project>
+      <Project>{57ddae32-8c30-8160-7107-9ba770e19bc2}</Project>
       <Name>Unity.TextMeshPro.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Performance.Profile-Analyzer.Editor.csproj">
-      <Project>{87a19a64-2d1d-0d4a-6be3-5230689d5edf}</Project>
+      <Project>{9c6a5c01-fdee-da36-badf-3f003989a54b}</Project>
       <Name>Unity.Performance.Profile-Analyzer.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.csproj">
-      <Project>{2e306500-b4c5-5c8a-7279-3f54c813b97a}</Project>
+      <Project>{c404765b-b35c-7e89-4d08-30e28eaf8ef2}</Project>
       <Name>Unity.TestTools.CodeCoverage.Editor.OpenCover.Model</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualStudio.Editor.csproj">
-      <Project>{79a7117e-91f6-de38-913f-bf0dc5894941}</Project>
+      <Project>{cc9441bb-e996-c495-0dc2-a85799b26008}</Project>
       <Name>Unity.VisualStudio.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Timeline.csproj">
-      <Project>{2497b82f-a2d1-4b74-3872-5028ba212f72}</Project>
+      <Project>{60149a3e-ef27-dbdc-e287-2e6033b31129}</Project>
       <Name>Unity.Timeline</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Core.Editor.csproj">
-      <Project>{efa504e0-2f19-4a6e-6bf3-6ca7996ebb8d}</Project>
+      <Project>{cd7666c3-09fc-9fc0-aed2-517dbb73b73f}</Project>
       <Name>Unity.VisualScripting.Core.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{092272cb-0713-4d72-76a1-40f736752e21}</Project>
+      <Project>{12bd6e3a-2c7d-e35d-c9e6-cccc4b0238ad}</Project>
       <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.State.Editor.csproj">
-      <Project>{b26c455f-ff32-51b2-0cd1-c1746b8e1f44}</Project>
+      <Project>{2b8aff0d-86e5-c096-a6a3-0e841d86937a}</Project>
       <Name>Unity.VisualScripting.State.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Burst.Editor.csproj">
-      <Project>{a61687ec-6310-b467-f615-b7e3ff938278}</Project>
+      <Project>{fdee0b1e-d6ca-4115-ad6a-269622c8dfe6}</Project>
       <Name>Unity.Burst.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Searcher.Editor.csproj">
-      <Project>{ab13d355-15d2-ead7-745a-d76f80ceaf90}</Project>
+      <Project>{a2d1a1c0-7d0c-9f1b-6c65-e4c596194c14}</Project>
       <Name>Unity.Searcher.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj">
-      <Project>{b1569fd1-aaca-0146-8c8b-7c2d666bba34}</Project>
+      <Project>{400f38f8-d9c2-ce81-611f-ac14723bb54a}</Project>
       <Name>Unity.VisualScripting.SettingsProvider.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.csproj">
-      <Project>{973c2104-000a-6942-c9d0-975b31a11639}</Project>
+      <Project>{964b9816-b3d4-cd5d-79cb-58250b65e43f}</Project>
       <Name>Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Flow.csproj">
-      <Project>{783359ca-ad12-62ea-f168-cb0961a7fb12}</Project>
+      <Project>{3f1bc712-0937-d524-68d9-fc5705f3c5e7}</Project>
       <Name>Unity.VisualScripting.Flow</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.InputSystem.csproj">
-      <Project>{f86b6a42-97cd-002e-0ef7-bb351030b9fb}</Project>
+      <Project>{16aad319-ffd6-9a05-9666-5db1d4a62d65}</Project>
       <Name>Unity.InputSystem</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Rider.Editor.csproj">
-      <Project>{998b7de3-5a41-81e6-9c2d-dc16fa03e82f}</Project>
+      <Project>{f16c4064-ead9-b93d-993d-b7cd56822606}</Project>
       <Name>Unity.Rider.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
-      <Project>{b841fca6-e8f0-ecf4-b3a6-103120271316}</Project>
+      <Project>{6073a1e8-b4a2-3532-862d-551076665469}</Project>
       <Name>Unity.PlasticSCM.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Core.csproj">
-      <Project>{19050c98-4286-6b21-03bd-f6e2cf52cec4}</Project>
+      <Project>{7c432786-fb48-15cb-21b9-9401bd13fdfe}</Project>
       <Name>Unity.VisualScripting.Core</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj">
-      <Project>{731b6155-313e-b15b-cc0d-3da4c2702839}</Project>
+      <Project>{5c8e2251-6589-a03f-959c-7155e18424e7}</Project>
       <Name>Unity.EditorCoroutines.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.csproj">
-      <Project>{532c3d73-3a28-3e5c-6120-0c4c18394801}</Project>
+      <Project>{99d91c8e-29da-fa12-5b7a-f95ccd459d48}</Project>
       <Name>Unity.Mathematics</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.csproj">
-      <Project>{d7f380b9-1c7a-7445-39b4-5b5379140f25}</Project>
+      <Project>{75131a13-d4c8-e7f6-89a2-c1ae8e2b8b47}</Project>
       <Name>Unity.Services.Core</Name>
     </ProjectReference>
     <ProjectReference Include="Cinemachine.csproj">
-      <Project>{189fefb5-6c35-dc70-aa87-4220892c25b8}</Project>
+      <Project>{2d9b717e-4dd5-b5bf-3859-4c08fe63831f}</Project>
       <Name>Cinemachine</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Analytics.csproj">
-      <Project>{81910499-4959-cd66-111a-de9cb1d33482}</Project>
+      <Project>{c5d4900f-0288-cce1-8304-65a8c3cb1204}</Project>
       <Name>Unity.Services.Core.Analytics</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Burst.csproj">
-      <Project>{20b5826e-b70f-1e0e-795a-f191752eadf9}</Project>
+      <Project>{48c118ee-13be-46f8-2817-63b28ee4f285}</Project>
       <Name>Unity.Burst</Name>
     </ProjectReference>
     <ProjectReference Include="com.unity.cinemachine.editor.csproj">
-      <Project>{7c11b1ce-8094-b055-54fe-a60d65b0676f}</Project>
+      <Project>{830721b7-49f8-8198-b03b-1a4b06e54f46}</Project>
       <Name>com.unity.cinemachine.editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj">
-      <Project>{7050db28-e8f1-38b4-fc6b-14b3654ecf4c}</Project>
+      <Project>{a301601c-f114-3768-5dc6-26a23dfabbf9}</Project>
       <Name>Unity.VisualScripting.Shared.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Environments.csproj">
-      <Project>{ea2d0ab9-01e4-efd6-673b-7d79da08ac22}</Project>
+      <Project>{b5321e39-8f4b-0735-3bbb-db4c7dcf4b39}</Project>
       <Name>Unity.Services.Core.Environments</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Timeline.Editor.csproj">
-      <Project>{579ad503-407b-1361-8b8b-5e203803a2f5}</Project>
+      <Project>{c34f8740-40d1-f769-9ff7-4283b562429d}</Project>
       <Name>Unity.Timeline.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Editor.csproj">
-      <Project>{8cb9c4da-a430-398d-c6a7-7b7dd372aa76}</Project>
+      <Project>{0c70a6a7-5298-b0ef-99ff-0448778fec2a}</Project>
       <Name>Unity.Mathematics.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.csproj">
-      <Project>{993d7faa-5d73-a60f-dc6d-eac37180df14}</Project>
+      <Project>{6990f1e5-40dd-a9f1-576d-d203b8dccc2e}</Project>
       <Name>Unity.TestTools.CodeCoverage.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
-      <Project>{e6f95646-71ba-2b93-76e1-b8ab5626ffae}</Project>
+      <Project>{78b0cb71-ac90-eb4b-eb70-c65eba121825}</Project>
       <Name>Unity.VisualScripting.State</Name>
     </ProjectReference>
   </ItemGroup>

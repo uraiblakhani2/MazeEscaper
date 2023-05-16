@@ -17,13 +17,15 @@ public class EndPlate : MonoBehaviour
     public void MainMenu()
     {
         GameManager.Instance.ResetAll();
+        Destroy(UIManager.Instance);
         SceneManager.LoadScene("MainMenu");
     }
 
     public void Reset()
     {
         GameManager.Instance.ResetAll();
-        SceneManager.LoadScene("Stage1");
+        //SceneManager.LoadScene("Stage2");
         Cursor.lockState = CursorLockMode.None;
+        UIManager.Instance.StartGame();
     }
 }

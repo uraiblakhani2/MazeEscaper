@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
     public int lastScore;
+    public int lastYellowScore;
+    public int lastBlueScore;
     public bool HasKey { get; set; }
     public int yellowPickups { get; private set; }
     public int bluePickups { get; private set; }
@@ -23,17 +25,18 @@ public class GameManager : MonoBehaviour
 
     void Awake() 
     {
-        // Set Instance to this, Destroy if another instance is in the scene.
-
+        // If an Instance already exists and it's not this, destroy this
         if (Instance != null && Instance != this) 
         { 
-            Destroy(this); 
+            Destroy(gameObject);
+            return;
         } 
-        else 
-        { 
-            Instance = this; 
-            DontDestroyOnLoad(gameObject);
-        }
+
+        // Set Instance to this
+        Instance = this;
+
+        // Make this object persist across scenes
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
@@ -46,20 +49,33 @@ public class GameManager : MonoBehaviour
         score += x;
     }
 
+    // Use this for OnDeath, resets to the score the player had at the beginning of that level
     public void ResetScore()
     {
         score = lastScore;
+        yellowPickups = lastYellowScore;
+        bluePickups = lastBlueScore;
     }
 
     public void OnDeath()
     {
-        score = lastScore;
+        ResetPlayerHealth();
+        ResetScore();
+        //ResetPickupCounts();
+        UIManager.Instance.ResetTimer();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void FinishStage()
     {
         lastScore = score;
+        lastYellowScore = yellowPickups;
+        bluePickups = bluePickups;
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            UIManager.Instance.HidePickupCounters();
+            UIManager.Instance.timerIsActive = false;
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -78,13 +94,17 @@ public class GameManager : MonoBehaviour
     {
         yellowPickups = 0;
         bluePickups = 0;
+        lastYellowScore = 0;
+        lastBlueScore = 0;
     }
 
     public void ResetAll()
     {
         score = 0;
         lastScore = 0;
+        ResetPlayerHealth();
         ResetPickupCounts();
+        UIManager.Instance.ResetTimer();
     }
 
     public void TakeDamage()
@@ -95,6 +115,18 @@ public class GameManager : MonoBehaviour
         {
             OnDeath();
         }
+    }
+
+      public void healthBoost()
+    {
+        if (playerHealth <= 100)
+        {
+            playerHealth ++;
+
+        }
+
+        
+        
     }
 
     // Call this method in ResetAll() to reset the player's health

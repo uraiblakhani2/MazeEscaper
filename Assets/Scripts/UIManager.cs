@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
@@ -20,19 +21,20 @@ public class UIManager : MonoBehaviour
     float timer = 300f; // 5-minute timer (300 seconds)
     public bool timerIsActive = false; // Add this line
 
-    void Awake()
+    void Awake() 
     {
-        // Set Instance to this, Destroy if another instance is in the scene.
+        // If an Instance already exists and it's not this, destroy this
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(gameObject);
+            return;
+        } 
 
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        // Set Instance to this
+        Instance = this;
+
+        // Make this object persist across scenes
+        DontDestroyOnLoad(gameObject);
 
         score = transform.Find("Score").GetComponent<TMP_Text>();
         timerText = transform.Find("Timer").GetComponent<TMP_Text>();
@@ -50,20 +52,10 @@ public class UIManager : MonoBehaviour
         healthBarContainer.SetActive(false);
     }
 
-    // void Update()
-    // {
-    //     // SetScore(GameManager.Instance.score);
-    //     if (timerIsActive)  UpdateTimer();
-    //     yellowPickupsText.text = GameManager.Instance.yellowPickups.ToString();
-    //     bluePickupsText.text = GameManager.Instance.bluePickups.ToString();
-
-    //     healthBar.fillAmount = (float)GameManager.Instance.playerHealth / 3;
-    // }
-
     void Update()
     {
         // SetScore(GameManager.Instance.score);
-        if (timerIsActive) UpdateTimer();
+        if (timerIsActive)  UpdateTimer();
         if (GameManager.Instance != null)
         {
             yellowPickupsText.text = GameManager.Instance.yellowPickups.ToString();
@@ -71,11 +63,14 @@ public class UIManager : MonoBehaviour
             healthBar.fillAmount = (float)GameManager.Instance.playerHealth / 3;
         }
 
+        if (Keyboard.current.mKey.wasPressedThisFrame)
+            GameManager.Instance.FinishStage();
+
     }
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Stage1");
+        SceneManager.LoadScene("Stage2");
         Cursor.lockState = CursorLockMode.Locked;
         yellowPickupsText.gameObject.SetActive(true);
         bluePickupsText.gameObject.SetActive(true);
@@ -98,21 +93,34 @@ public class UIManager : MonoBehaviour
 
     void UpdateTimer()
     {
-        timer -= Time.deltaTime;
+        if (timer > 0f)
+            timer -= Time.deltaTime;
+        else
+        {
+            timerIsActive = false;
+            GameManager.Instance.OnDeath();
+        }
+
         int minutes = Mathf.FloorToInt(timer / 60);
         int seconds = Mathf.FloorToInt(timer % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-
-        if (timer <= 0)
-        {
-            timer = 0;
-            GameManager.Instance.OnDeath();
-        }
     }
 
     public void HidePickupCounters()
     {
         yellowPickupsText.gameObject.SetActive(false);
         bluePickupsText.gameObject.SetActive(false);
+    }
+
+    public void ShowPickupCounters()
+    {
+        yellowPickupsText.gameObject.SetActive(true);
+        bluePickupsText.gameObject.SetActive(true);
+    }
+
+    public void ResetTimer()
+    {
+        timer = 300f;
+        timerIsActive = true;
     }
 }

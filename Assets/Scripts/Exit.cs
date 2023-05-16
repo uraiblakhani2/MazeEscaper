@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
+    public bool tutorial = false;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -13,6 +15,8 @@ public class Exit : MonoBehaviour
                 Debug.Log("Finish Stage");
                 GameManager.Instance.FinishStage();
             }
+            else if (tutorial)
+                GameManager.Instance.FinishStage();
         }
     }
 }

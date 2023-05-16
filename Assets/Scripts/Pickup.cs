@@ -44,13 +44,15 @@ public class Pickup : MonoBehaviour
                 default:
                     break;
             }
-            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<Collider>().enabled = false;
             GetComponent<MeshRenderer>().enabled = false;
+            Destroy(transform.parent.Find("Particle System").gameObject);
         }
     }
 
     private void Yellow()
     {
+        // GameManager.Instance.healthBoost();
         GameManager.Instance.AddYellowPickup();
         GameManager.Instance.AddScore(50);
     }
@@ -68,12 +70,13 @@ public class Pickup : MonoBehaviour
     private void Red()
     {
         GameManager.Instance.TakeDamage();
+        Destroy(transform.parent.gameObject);
     }
 
     IEnumerator BlueRespawn()
     {
         yield return new WaitForSeconds(30f);
-        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<Collider>().enabled = true;
         GetComponent<MeshRenderer>().enabled = true;
     }
 }

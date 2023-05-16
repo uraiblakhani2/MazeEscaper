@@ -3,8 +3,6 @@
 using UnityEngine.InputSystem;
 #endif
 
-
-
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
