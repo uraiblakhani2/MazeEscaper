@@ -52,7 +52,7 @@ public class Pickup : MonoBehaviour
 
     private void Yellow()
     {
-        // GameManager.Instance.healthBoost();
+        GameManager.Instance.healthBoost();
         GameManager.Instance.AddYellowPickup();
         GameManager.Instance.AddScore(50);
     }
@@ -63,7 +63,7 @@ public class Pickup : MonoBehaviour
         player.bluePowerUp = true;
         player.hasDoubleJumped = false;
         GameManager.Instance.AddBluePickup();
-        GameManager.Instance.AddScore(50);
+        GameManager.Instance.AddScore(100);
         StartCoroutine(BlueRespawn());
     }
 
